@@ -46,7 +46,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->beforeRegister();
 
         foreach ($this->getTraits($this->getReflection()) as $traitName => $trait) {
-            $registerMethod = 'register' . class_basename($traitName);
+            $registerMethod = 'register'.class_basename($traitName);
             if (method_exists($this, $registerMethod)) {
                 $this->{$registerMethod}();
             }
@@ -62,7 +62,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->beforeBoot();
 
         foreach ($this->getTraits($this->getReflection()) as $traitName => $trait) {
-            $bootMethod = 'boot' . class_basename($traitName);
+            $bootMethod = 'boot'.class_basename($traitName);
             if (method_exists($this, $bootMethod)) {
                 $this->{$bootMethod}();
             }
@@ -81,7 +81,7 @@ class ModuleServiceProvider extends ServiceProvider
             $traits = $this->getTraits($reflection->getParentClass(), $traits);
         }
 
-        if (!empty($reflection->getTraits())) {
+        if (! empty($reflection->getTraits())) {
             foreach ($reflection->getTraits() as $trait_key => $trait) {
                 $traits[$trait_key] = $trait;
                 $traits = $this->getTraits($trait, $traits);

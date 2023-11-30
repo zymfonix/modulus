@@ -8,7 +8,4 @@ return [
      */
     'prefix_routes' => false,
 
-    /**
-     *
-     */
 ];

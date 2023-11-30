@@ -21,7 +21,7 @@ class Modulus extends Collection
 
     public function get($key, $default = null)
     {
-        if (!parent::get($key)) {
+        if (! parent::get($key)) {
             throw new \Exception("Module '$key' not registered.");
         }
 
