@@ -33,16 +33,16 @@
         "psr-4": {
             "Zymfonix\\Modulus\\": "src/",
             "Zymfonix\\Modulus\\Database\\Factories\\": "database/factories/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Zymfonix\\Modulus\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
+        }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",

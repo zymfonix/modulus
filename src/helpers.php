@@ -2,12 +2,12 @@
 
 use Zymfonix\Modulus\Modulus;
 
-if (! function_exists('modulus')) {
+if (!function_exists('modulus')) {
     function modulus($module = null)
     {
         $modulus = resolve(Modulus::class);
 
-        if (! $module) {
+        if (!$module) {
             return $modulus->current();
         }
 
