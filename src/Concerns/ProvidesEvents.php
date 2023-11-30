@@ -23,7 +23,7 @@ trait ProvidesEvents
     /**
      * Listen for events.
      */
-    protected function loadEvents()
+    protected function bootProvidesEvents()
     {
         foreach ($this->listeners as $event => $listeners) {
             foreach ($listeners as $listener) {

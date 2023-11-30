@@ -28,7 +28,7 @@ trait ProvidesMiddleware
     /**
      * Loads middlewares.
      */
-    protected function loadMiddlewares()
+    protected function bootProvidesMiddleware()
     {
         $this->loadGlobalMiddlewares();
         $this->loadMiddlewareGroups();

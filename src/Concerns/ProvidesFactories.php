@@ -9,8 +9,8 @@ trait ProvidesFactories
     /**
      * Loads the factories.
      */
-    protected function loadFactories()
+    protected function bootProvidesFactories()
     {
-        $this->app->make(EloquentFactory::class)->load($this->dir.'/database/factories');
+        $this->app->make(EloquentFactory::class)->load($this->dir . '/database/factories');
     }
 }

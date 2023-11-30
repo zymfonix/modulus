@@ -16,7 +16,7 @@ trait ProvidesPolicies
     /**
      * Register policies.
      */
-    protected function registerPolicies()
+    protected function bootProvidesPolicies()
     {
         if ($this->policies) {
             foreach ($this->policies as $key => $value) {

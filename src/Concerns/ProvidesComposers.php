@@ -17,7 +17,7 @@ trait ProvidesComposers
     /**
      * Register composers
      */
-    protected function loadComposers()
+    protected function bootProvidesComposers()
     {
         foreach ($this->composers as $view => $composer) {
             $composer = Arr::wrap($composer);

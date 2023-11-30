@@ -1,16 +1,14 @@
 <?php
 
-use Zymfonix\Modulus\Modulus;
+use Zymfonix\Modulus\Facades\Modulus;
 
 if (! function_exists('modulus')) {
     function modulus($module = null)
     {
-        $modulus = resolve(Modulus::class);
-
-        if (! $module) {
-            return $modulus->current();
+        if (!$module) {
+            return Modulus::instance();
         }
 
-        return $modulus->get($module);
+        return Modulus::get($module);
     }
 }

@@ -3,6 +3,8 @@
 namespace Zymfonix\Modulus\Concerns;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Zymfonix\Modulus\Facades\Modulus;
 
 trait ProvidesConfigs
 {
@@ -11,10 +13,10 @@ trait ProvidesConfigs
      */
     protected function bootProvidesConfigs()
     {
-        collect(File::glob($this->dir.'/config/*.php'))->each(function ($configFile) {
+        collect(File::glob(Str::finish($this->dir, '/') . 'config/*.php'))->each(function ($configFile) {
             $this->publishes([
                 $configFile => config_path(basename($configFile)),
-            ], $this->module->getId().'.'.str_replace('.php', '', basename($configFile)));
+            ], $this->module->getId() . '.' . str_replace('.php', '', basename($configFile)));
 
             $this->mergeConfigFrom(
                 $configFile,

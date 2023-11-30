@@ -4,7 +4,11 @@
 return [
 
     /**
-     * When set to `true` it will prefix the route names for each module with the module name.
+     * When set to `true` it will prefix the route path for each module with the module name.
      */
     'prefix_routes' => false,
+
+    /**
+     *
+     */
 ];

@@ -16,7 +16,7 @@ trait ProvidesCommands
     /**
      * Loads the commands if the application is running in the console.
      */
-    protected function loadCommands()
+    protected function bootProvidesCommands()
     {
         if ($this->app->runningInConsole()) {
             $this->commands($this->commands);
