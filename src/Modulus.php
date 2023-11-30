@@ -23,7 +23,7 @@ class Modulus extends Collection
 
     public function get($key, $default = null)
     {
-        if (!parent::get($key)) {
+        if (! parent::get($key)) {
             throw new \Exception("Module '$key' not registered.");
         }
 
@@ -42,7 +42,7 @@ class Modulus extends Collection
 
     public function getPackages()
     {
-        if (!static::$packages) {
+        if (! static::$packages) {
             static::$packages = new Collection(
                 json_decode(file_get_contents(base_path('vendor/composer/installed.json')), true)['packages']
             );
@@ -50,6 +50,4 @@ class Modulus extends Collection
 
         return static::$packages;
     }
-
-
 }
