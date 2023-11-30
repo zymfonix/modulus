@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 
 class Modulus extends Collection
 {
+    public static $packages = null;
+
     public function register($id, $namespace, $directory): Module
     {
         $module = new Module(
@@ -21,7 +23,7 @@ class Modulus extends Collection
 
     public function get($key, $default = null)
     {
-        if (! parent::get($key)) {
+        if (!parent::get($key)) {
             throw new \Exception("Module '$key' not registered.");
         }
 
@@ -37,4 +39,17 @@ class Modulus extends Collection
     {
         return $this;
     }
+
+    public function getPackages()
+    {
+        if (!static::$packages) {
+            static::$packages = new Collection(
+                json_decode(file_get_contents(base_path('vendor/composer/installed.json')), true)['packages']
+            );
+        }
+
+        return static::$packages;
+    }
+
+
 }

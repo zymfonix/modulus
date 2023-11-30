@@ -5,6 +5,8 @@ namespace Zymfonix\Modulus;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use TorMorten\Mix\Mix;
+use Zymfonix\Modulus\Facades\Modulus as ModulusFacade;
 
 class Module
 {
@@ -40,7 +42,7 @@ class Module
      */
     public function hasWebRoutes()
     {
-        return file_exists($this->directory.'/routes/web.php');
+        return file_exists($this->directory . '/routes/web.php');
     }
 
     /**
@@ -50,7 +52,7 @@ class Module
      */
     public function hasApiRoutes()
     {
-        return file_exists($this->directory.'/routes/api.php');
+        return file_exists($this->directory . '/routes/api.php');
     }
 
     /**
@@ -61,9 +63,9 @@ class Module
     public function isActiveInRequest()
     {
         return $this->getRoutes()
-            ->filter(function ($route) {
-                return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
-            })->count() > 0;
+                ->filter(function ($route) {
+                    return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
+                })->count() > 0;
     }
 
     /**
@@ -112,6 +114,13 @@ class Module
         return $this->directory;
     }
 
+    public function getPackage()
+    {
+        return (object)ModulusFacade::getPackages()
+            ->filter(fn($package) => str($package['name'])->endsWith($this->getId()))
+            ->first();
+    }
+
     /**
      * Gets the module config.
      *
@@ -139,7 +148,7 @@ class Module
      */
     public function getWebControllersNamespace()
     {
-        return $this->getNamespace().'\Http\Controllers';
+        return $this->getNamespace() . '\Http\Controllers';
     }
 
     /**
@@ -149,7 +158,7 @@ class Module
      */
     public function getApiControllersNamespace()
     {
-        return $this->getNamespace().'\Http\Controllers\Api';
+        return $this->getNamespace() . '\Http\Controllers\Api';
     }
 
     /**
@@ -159,7 +168,7 @@ class Module
      */
     public function getWebRouteName()
     {
-        return $this->getId().'::';
+        return $this->getId() . '::';
     }
 
     /**
@@ -169,20 +178,27 @@ class Module
      */
     public function getApiRouteName()
     {
-        return $this->getId().'::api.';
+        return $this->getId() . '::api.';
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     public function getPath($path = '')
     {
-        return $this->getDirectory().'/'.$path;
+        return $this->getDirectory() . '/' . $path;
     }
 
     public static function mix($path, $module, $cdn = false)
     {
-        if (App::runningInConsole() || App::runningUnitTests()) {
+        if (App::runningInConsole() || App::runningUnitTests() || resolve(Mix::class)->inLocalMixRequest()) {
             return $path;
         }
 
-        return (new Support\Mix($path, $module, $cdn))->toString();
+        $module = ModulusFacade::get($module);
+        $package = $module->getPackage();
+
+        return resolve(Mix::class)->handle($path, $package->name);
     }
 }

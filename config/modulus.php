@@ -8,4 +8,9 @@ return [
      */
     'prefix_routes' => false,
 
+    /**
+     * When set to true will include asset handling
+     */
+    'provide_assets' => env('MODULUS_PROVIDE_ASSETS', true),
+
 ];
