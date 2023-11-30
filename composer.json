@@ -22,6 +22,7 @@
         "illuminate/support": "^9.0|^10.0",
         "laravel/helpers": "^1.5",
         "tormjens/eventy": "^0.7",
+        "tormjens/extended-mix": "^1.0.9",
         "laravel/legacy-factories": "^1.1"
     },
     "require-dev": {
