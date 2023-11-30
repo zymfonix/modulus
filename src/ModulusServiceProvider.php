@@ -10,6 +10,7 @@ class ModulusServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
+
         /*
          * This class is a Package Service Provider
          *
@@ -17,9 +18,11 @@ class ModulusServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('modulus')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_modulus_table')
-            ->hasCommand(ModulusCommand::class);
+            ->hasConfigFile();
+    }
+
+    public function packageRegistered()
+    {
+        $this->app->singleton(Modulus::class);
     }
 }
