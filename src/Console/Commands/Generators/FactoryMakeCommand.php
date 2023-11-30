@@ -7,7 +7,6 @@ use Zymfonix\Modulus\Manager;
 
 class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryMakeCommand
 {
-
     use ModuleCommand;
 
     /**
@@ -17,17 +16,16 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
      */
     protected $name = 'module:make:factory';
 
-
     /**
      * Build the class with the given name.
      *
-     * @param string $name
+     * @param  string  $name
      * @return string
      */
     protected function buildClass($name)
     {
         $model = $this->option('model')
-            ? $this->qualifyClass('Models\\' . $this->option('model'))
+            ? $this->qualifyClass('Models\\'.$this->option('model'))
             : 'Model';
 
         return str_replace(
@@ -38,7 +36,7 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
     /**
      * Get the destination class path.
      *
-     * @param string $name
+     * @param  string  $name
      * @return string
      */
     protected function getPath($name)
@@ -49,6 +47,6 @@ class FactoryMakeCommand extends \Illuminate\Database\Console\Factories\FactoryM
 
         $module = resolve(Manager::class)->get($this->argument('module'));
 
-        return base_path('vendor') . '/osmaviation/' . $module->getId() . "/database/factories/{$name}.php";
+        return base_path('vendor').'/osmaviation/'.$module->getId()."/database/factories/{$name}.php";
     }
 }

@@ -4,7 +4,6 @@ namespace Zymfonix\Modulus\Concerns;
 
 trait ProvidesMiddleware
 {
-
     /**
      * Global middleware to register.
      *
@@ -25,7 +24,6 @@ trait ProvidesMiddleware
      * @var array
      */
     protected $routeMiddleware = [];
-
 
     /**
      * Loads middlewares.

@@ -2,7 +2,6 @@
 
 namespace Zymfonix\Modulus\Console\Commands\Generators;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Zymfonix\Modulus\Manager;
 
@@ -18,13 +17,12 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
         {--create= : The table to be created}
         {--table= : The table to migrate}';
 
-
     /**
      * Write the migration file to disk.
      *
-     * @param string $name
-     * @param string $table
-     * @param bool $create
+     * @param  string  $name
+     * @param  string  $table
+     * @param  bool  $create
      * @return string
      */
     protected function writeMigration($name, $table, $create)
@@ -45,12 +43,11 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
     {
         $module = resolve(Manager::class)->get($this->argument('module'));
 
-        $dir = base_path('vendor') . '/osmaviation/' . $module->getId();
-        if (!File::isDirectory($dir)) {
-            $dir = base_path('vendor') . '/zymfonix/' . $module->getId();
+        $dir = base_path('vendor').'/osmaviation/'.$module->getId();
+        if (! File::isDirectory($dir)) {
+            $dir = base_path('vendor').'/zymfonix/'.$module->getId();
         }
 
-        return $dir . '/database/migrations';
+        return $dir.'/database/migrations';
     }
-
 }

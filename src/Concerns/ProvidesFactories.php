@@ -11,7 +11,6 @@ trait ProvidesFactories
      */
     protected function loadFactories()
     {
-        $this->app->make(EloquentFactory::class)->load($this->dir . '/database/factories');
+        $this->app->make(EloquentFactory::class)->load($this->dir.'/database/factories');
     }
-
 }

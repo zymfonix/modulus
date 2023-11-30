@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\View;
 
 trait ProvidesComposers
 {
-
     /**
      * Composers to register.
      *
@@ -29,5 +28,4 @@ trait ProvidesComposers
             }
         }
     }
-
 }

@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class NotificationMakeCommand extends \Illuminate\Foundation\Console\NotificationMakeCommand
 {
-
     use ModuleCommand;
 
     /**

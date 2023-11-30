@@ -15,7 +15,7 @@ trait ProvidesRoutes
             Route::middleware('web')
                 ->name($this->module->getWebRouteName())
                 ->namespace($this->module->getWebControllersNamespace())
-                ->group($this->dir . '/routes/web.php');
+                ->group($this->dir.'/routes/web.php');
         }
 
         if ($this->module->hasApiRoutes()) {
@@ -23,8 +23,7 @@ trait ProvidesRoutes
                 ->middleware('api')
                 ->name($this->module->getApiRouteName())
                 ->namespace($this->module->getApiControllersNamespace())
-                ->group($this->dir . '/routes/api.php');
+                ->group($this->dir.'/routes/api.php');
         }
     }
-
 }

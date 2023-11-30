@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCommand
 {
-
     use ModuleCommand;
 
     /**

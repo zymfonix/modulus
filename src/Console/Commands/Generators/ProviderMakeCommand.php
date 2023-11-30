@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ProviderMakeCommand extends \Illuminate\Foundation\Console\ProviderMakeCommand
 {
-
     use ModuleCommand;
 
     /**

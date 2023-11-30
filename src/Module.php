@@ -25,9 +25,6 @@ class Module
 
     /**
      * Module constructor.
-     * @param $id
-     * @param $namespace
-     * @param $directory
      */
     public function __construct($id, $namespace, $directory)
     {
@@ -38,37 +35,42 @@ class Module
 
     /**
      * Checks if the module has web routes defined.
+     *
      * @return bool
      */
     public function hasWebRoutes()
     {
-        return file_exists($this->directory . '/routes/web.php');
+        return file_exists($this->directory.'/routes/web.php');
     }
 
     /**
      * Checks if the module has api routes defined.
+     *
      * @return bool
      */
     public function hasApiRoutes()
     {
-        return file_exists($this->directory . '/routes/api.php');
+        return file_exists($this->directory.'/routes/api.php');
     }
 
     /**
      * Checks if the module is active in the current request.
+     *
      * @return bool
      */
     public function isActiveInRequest()
     {
         return $this->getRoutes()
-                ->filter(function ($route) {
-                    return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
-                })->count() > 0;
+            ->filter(function ($route) {
+                return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
+            })->count() > 0;
     }
 
     /**
      * Creates a collection of all routes attached to this model.
+     *
      * @return Collection
+     *
      * @throws \Exception
      */
     public function getRoutes()
@@ -82,6 +84,7 @@ class Module
 
     /**
      * Gets the namespace.
+     *
      * @return string
      */
     public function getNamespace()
@@ -91,6 +94,7 @@ class Module
 
     /**
      * Gets the ID.
+     *
      * @return string
      */
     public function getId()
@@ -100,6 +104,7 @@ class Module
 
     /**
      * Gets the directory path.
+     *
      * @return string
      */
     public function getDirectory()
@@ -109,7 +114,9 @@ class Module
 
     /**
      * Gets the module config.
+     *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function getConfig($key = null, $default = null)
@@ -118,50 +125,56 @@ class Module
             $this->id,
         ];
 
-        if ($key) $search[] = $key;
+        if ($key) {
+            $search[] = $key;
+        }
 
-        return config(join('.', $search), $default);
+        return config(implode('.', $search), $default);
     }
 
     /**
      * Gets the controller namespace.
+     *
      * @return string
      */
     public function getWebControllersNamespace()
     {
-        return $this->getNamespace() . '\Http\Controllers';
+        return $this->getNamespace().'\Http\Controllers';
     }
 
     /**
      * Gets the API controller namespace.
+     *
      * @return string
      */
     public function getApiControllersNamespace()
     {
-        return $this->getNamespace() . '\Http\Controllers\Api';
+        return $this->getNamespace().'\Http\Controllers\Api';
     }
 
     /**
      * Gets the name prefix.
+     *
      * @return string
      */
     public function getWebRouteName()
     {
-        return $this->getId() . '::';
+        return $this->getId().'::';
     }
 
     /**
      * Gets the api name prefix.
+     *
      * @return string
      */
     public function getApiRouteName()
     {
-        return $this->getId() . '::api.';
+        return $this->getId().'::api.';
     }
 
     public function getPath($path = '')
     {
-        return $this->getDirectory() . '/' . $path;
+        return $this->getDirectory().'/'.$path;
     }
 
     public static function mix($path, $module, $cdn = false)

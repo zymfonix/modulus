@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
 {
-
     use ModuleCommand;
 
     /**

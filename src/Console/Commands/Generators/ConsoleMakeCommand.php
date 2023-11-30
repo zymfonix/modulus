@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeCommand
 {
-
     use ModuleCommand;
 
     /**

@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class PolicyMakeCommand extends \Illuminate\Foundation\Console\PolicyMakeCommand
 {
-
     use ModuleCommand;
 
     /**

@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class JobMakeCommand extends \Illuminate\Foundation\Console\JobMakeCommand
 {
-
     use ModuleCommand;
 
     /**

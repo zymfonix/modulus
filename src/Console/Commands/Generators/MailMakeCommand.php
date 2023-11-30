@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class MailMakeCommand extends \Illuminate\Foundation\Console\MailMakeCommand
 {
-
     use ModuleCommand;
 
     /**

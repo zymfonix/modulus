@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ListenerMakeCommand extends \Illuminate\Foundation\Console\ListenerMakeCommand
 {
-
     use ModuleCommand;
 
     /**

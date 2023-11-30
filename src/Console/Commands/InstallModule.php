@@ -3,9 +3,6 @@
 namespace Zymfonix\Modulus\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
-use Zymfonix\Modulus\Manager;
-use Zymfonix\Modulus\Module;
 
 class InstallModule extends Command
 {

@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeCommand
 {
-
     use ModuleCommand;
 
     /**

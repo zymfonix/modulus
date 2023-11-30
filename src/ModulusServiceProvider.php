@@ -4,7 +4,6 @@ namespace Zymfonix\Modulus;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Zymfonix\Modulus\Commands\ModulusCommand;
 
 class ModulusServiceProvider extends PackageServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace Zymfonix\Modulus\Console\Commands\Generators;
 
+use Illuminate\Support\Str;
 use Zymfonix\Modulus\Concerns\ModuleCommand;
 use Zymfonix\Modulus\Manager;
-use Illuminate\Support\Str;
 
 class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCommand
 {
@@ -20,7 +20,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     /**
      * Get the fully-qualified model class name.
      *
-     * @param string $model
+     * @param  string  $model
      * @return string
      *
      * @throws \InvalidArgumentException
@@ -35,22 +35,21 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
 
         $rootNamespace = $this->laravel->getNamespace();
         if ($module = resolve(Manager::class)->get($this->argument('module'))) {
-            $rootNamespace = $module->getNamespace() . '\\Models';
+            $rootNamespace = $module->getNamespace().'\\Models';
         }
 
-        if (!Str::startsWith($model, $rootNamespace)) {
-            $model = $rootNamespace . $model;
+        if (! Str::startsWith($model, $rootNamespace)) {
+            $model = $rootNamespace.$model;
         }
 
         return $model;
     }
 
-
     /**
      * Replace the namespace for the given stub.
      *
-     * @param string $stub
-     * @param string $name
+     * @param  string  $stub
+     * @param  string  $name
      * @return $this
      */
     protected function replaceNamespace(&$stub, $name)

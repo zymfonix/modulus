@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class EventMakeCommand extends \Illuminate\Foundation\Console\EventMakeCommand
 {
-
     use ModuleCommand;
 
     /**

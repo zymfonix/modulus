@@ -44,7 +44,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->module = Modulus::register(basename($this->dir), $this->namespace, $this->dir);
 
         foreach ($this->getTraits($this->getReflection()) as $traitName => $trait) {
-            $registerMethod = 'register' . class_basename($traitName);
+            $registerMethod = 'register'.class_basename($traitName);
             if (method_exists($this, $registerMethod)) {
                 $this->{$registerMethod}();
             }
@@ -54,7 +54,7 @@ class ModuleServiceProvider extends ServiceProvider
     public function boot()
     {
         foreach ($this->getTraits($this->getReflection()) as $traitName => $trait) {
-            $bootMethod = 'boot' . class_basename($traitName);
+            $bootMethod = 'boot'.class_basename($traitName);
             if (method_exists($this, $bootMethod)) {
                 $this->{$bootMethod}();
             }
@@ -67,7 +67,7 @@ class ModuleServiceProvider extends ServiceProvider
             $traits = $this->getTraits($reflection->getParentClass(), $traits);
         }
 
-        if (!empty($reflection->getTraits())) {
+        if (! empty($reflection->getTraits())) {
             foreach ($reflection->getTraits() as $trait_key => $trait) {
                 $traits[$trait_key] = $trait;
                 $traits = $this->getTraits($trait, $traits);
@@ -81,6 +81,7 @@ class ModuleServiceProvider extends ServiceProvider
      * Returns the namespace of the current class.
      *
      * @return string
+     *
      * @throws \ReflectionException
      */
     protected function findNamespace()
@@ -92,6 +93,7 @@ class ModuleServiceProvider extends ServiceProvider
      * Get the reflection of this class.
      *
      * @return \ReflectionClass
+     *
      * @throws \ReflectionException
      */
     protected function getReflection()

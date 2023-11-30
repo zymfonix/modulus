@@ -2,12 +2,11 @@
 
 namespace Zymfonix\Modulus\Console\Commands\Generators;
 
-use Zymfonix\Modulus\Concerns\ModuleCommand;
 use Illuminate\Support\Str;
+use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
 {
-
     use ModuleCommand;
 
     /**
@@ -26,7 +25,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     {
         $controller = Str::studly(class_basename($this->argument('name')));
 
-        $modelName = $this->qualifyClass('Models\\' . $this->getNameInput());
+        $modelName = $this->qualifyClass('Models\\'.$this->getNameInput());
 
         $this->call('module:make:controller', [
             'name' => "{$controller}Controller",
@@ -66,7 +65,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
 
         $this->call('module:make:factory', [
             'name' => "{$factory}Factory",
-            '--model' => $this->qualifyClass('Models\\' . $this->getNameInput()),
+            '--model' => $this->qualifyClass('Models\\'.$this->getNameInput()),
         ]);
     }
 }

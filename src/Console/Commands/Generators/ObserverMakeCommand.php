@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ObserverMakeCommand extends \Illuminate\Foundation\Console\ObserverMakeCommand
 {
-
     use ModuleCommand;
 
     /**

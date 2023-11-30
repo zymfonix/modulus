@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ResourceMakeCommand extends \Illuminate\Foundation\Console\ResourceMakeCommand
 {
-
     use ModuleCommand;
 
     /**

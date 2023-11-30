@@ -2,19 +2,16 @@
 
 namespace Zymfonix\Modulus\Concerns;
 
-use Illuminate\Console\GeneratorCommand;
-use Zymfonix\Modulus\Manager;
 use Illuminate\Support\Str;
-use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
+use Zymfonix\Modulus\Manager;
 
 trait ModuleCommand
 {
-
     /**
      * Get the destination class path.
      *
-     * @param string $name
+     * @param  string  $name
      * @return string
      */
     protected function getPath($name)
@@ -23,13 +20,13 @@ trait ModuleCommand
 
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        $basePath = base_path('vendor') . '/osmaviation/' . $module->getId();
+        $basePath = base_path('vendor').'/osmaviation/'.$module->getId();
 
-        if (!is_dir($basePath)) {
-            $basePath = base_path('vendor') . '/zymfonix/' . $module->getId();
+        if (! is_dir($basePath)) {
+            $basePath = base_path('vendor').'/zymfonix/'.$module->getId();
         }
 
-        $path = $basePath . '/src' . str_replace('\\', '/', $name) . '.php';
+        $path = $basePath.'/src'.str_replace('\\', '/', $name).'.php';
 
         return $path;
     }
@@ -44,14 +41,14 @@ trait ModuleCommand
         if ($module = resolve(Manager::class)->get($this->argument('module'))) {
             return $module->getNamespace();
         }
+
         return $this->laravel->getNamespace();
     }
-
 
     /**
      * Parse the class name and format according to the root namespace.
      *
-     * @param string $name
+     * @param  string  $name
      * @return string
      */
     protected function qualifyClass($name)
@@ -67,7 +64,7 @@ trait ModuleCommand
         $name = str_replace('/', '\\', $name);
 
         return $this->qualifyClass(
-            $this->getDefaultNamespace(trim($rootNamespace, '\\')) . '\\' . $name
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
         );
     }
 

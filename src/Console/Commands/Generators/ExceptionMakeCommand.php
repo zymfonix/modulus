@@ -6,7 +6,6 @@ use Zymfonix\Modulus\Concerns\ModuleCommand;
 
 class ExceptionMakeCommand extends \Illuminate\Foundation\Console\ExceptionMakeCommand
 {
-
     use ModuleCommand;
 
     /**
