@@ -6,6 +6,6 @@ trait ProvidesTranslations
 {
     protected function bootProvidesTranslations()
     {
-        $this->loadTranslationsFrom($this->dir . '/resources/lang', $this->module->getId());
+        $this->loadTranslationsFrom($this->dir.'/resources/lang', $this->module->getId());
     }
 }

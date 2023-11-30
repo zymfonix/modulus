@@ -6,6 +6,6 @@ trait ProvidesViews
 {
     protected function bootProvidesViews()
     {
-        $this->loadViewsFrom($this->dir . '/resources/views', $this->module->getId());
+        $this->loadViewsFrom($this->dir.'/resources/views', $this->module->getId());
     }
 }
