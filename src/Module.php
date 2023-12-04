@@ -116,8 +116,8 @@ class Module
 
     public function getPackage()
     {
-        return (object) ModulusFacade::getPackages()
-            ->filter(fn ($package) => str($package['name'])->endsWith($this->getId()))
+        return (object)ModulusFacade::getPackages()
+            ->filter(fn($package) => str($package['name'])->endsWith('/' . $this->getId()))
             ->first();
     }
 

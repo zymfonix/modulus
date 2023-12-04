@@ -8,28 +8,40 @@ use Zymfonix\Modulus\Manager;
 
 trait ModuleCommand
 {
+    protected function getBasePath()
+    {
+        $module = resolve(Manager::class)->get($this->argument('module'));
+        if (!$module) {
+            throw new \Exception('No such module "' . $this->argument('module') . '" exists.');
+        }
+        $package = $module->getPackage();
+
+        return base_path('vendor') . '/' . $package->name;
+    }
+
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
      * @return string
      */
     protected function getPath($name)
     {
-        $module = resolve(Manager::class)->get($this->argument('module'));
-
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        $basePath = base_path('vendor').'/osmaviation/'.$module->getId();
-
-        if (! is_dir($basePath)) {
-            $basePath = base_path('vendor').'/zymfonix/'.$module->getId();
-        }
-
-        $path = $basePath.'/src'.str_replace('\\', '/', $name).'.php';
+        $path = $this->getBasePath() . '/src' . str_replace('\\', '/', $name) . '.php';
 
         return $path;
     }
+
+    /**
+     * Returns the description for the command.
+     */
+    public function getDescription(): string
+    {
+        return 'Modulus: ' . $this->description;
+    }
+
 
     /**
      * Get the root namespace for the class.
@@ -48,7 +60,7 @@ trait ModuleCommand
     /**
      * Parse the class name and format according to the root namespace.
      *
-     * @param  string  $name
+     * @param string $name
      * @return string
      */
     protected function qualifyClass($name)
@@ -64,7 +76,7 @@ trait ModuleCommand
         $name = str_replace('/', '\\', $name);
 
         return $this->qualifyClass(
-            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')) . '\\' . $name
         );
     }
 
