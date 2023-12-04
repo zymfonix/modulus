@@ -3,9 +3,7 @@
 namespace Zymfonix\Modulus\Console\Commands\Generators;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 use Zymfonix\Modulus\Concerns\ModuleCommand;
-use Zymfonix\Modulus\Manager;
 
 class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\MigrateMakeCommand
 {
@@ -24,9 +22,9 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
     /**
      * Write the migration file to disk.
      *
-     * @param string $name
-     * @param string $table
-     * @param bool $create
+     * @param  string  $name
+     * @param  string  $table
+     * @param  bool  $create
      * @return string
      */
     protected function writeMigration($name, $table, $create)
@@ -45,6 +43,6 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
      */
     protected function getMigrationPath()
     {
-        return $this->getBasePath() . '/database/migrations';
+        return $this->getBasePath().'/database/migrations';
     }
 }
