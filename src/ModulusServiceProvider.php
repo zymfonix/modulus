@@ -13,6 +13,7 @@ class ModulusServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('modulus')
+            ->setBasePath(pathinfo((new \ReflectionClass(self::class))->getFileName())['dirname'])
             ->hasConfigFile();
     }
 
