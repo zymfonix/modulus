@@ -73,16 +73,6 @@
             "phpstan/extension-installer": true
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Zymfonix\\Modulus\\ModulusServiceProvider"
-            ],
-            "aliases": {
-                "Modulus": "Zymfonix\\Modulus\\Facades\\Modulus"
-            }
-        }
-    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
