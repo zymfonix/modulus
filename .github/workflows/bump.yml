@@ -1,0 +1,12 @@
+name: Bump
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: zymfonix/workflows/.github/workflows/bump.yml@master
+    secrets:
+      GH_PRIV_TOKEN: ${{ secrets.GH_PRIV_TOKEN }}
