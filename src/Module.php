@@ -42,7 +42,7 @@ class Module
      */
     public function hasWebRoutes()
     {
-        return file_exists($this->directory.'/routes/web.php');
+        return file_exists($this->directory . '/routes/web.php');
     }
 
     /**
@@ -52,7 +52,7 @@ class Module
      */
     public function hasApiRoutes()
     {
-        return file_exists($this->directory.'/routes/api.php');
+        return file_exists($this->directory . '/routes/api.php');
     }
 
     /**
@@ -63,9 +63,9 @@ class Module
     public function isActiveInRequest()
     {
         return $this->getRoutes()
-            ->filter(function ($route) {
-                return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
-            })->count() > 0;
+                ->filter(function ($route) {
+                    return str_start(request()->getRequestUri(), '/') === str_start($route, '/');
+                })->count() > 0;
     }
 
     /**
@@ -116,8 +116,10 @@ class Module
 
     public function getPackage()
     {
-        return (object) ModulusFacade::getPackages()
-            ->filter(fn ($package) => str($package['name'])->endsWith('/'.$this->getId()))
+        return (object)ModulusFacade::getPackages()
+            ->filter(function ($package) {
+                return str($package['name'])->endsWith('/' . $this->getId()) && !str($package['name'])->startsWith('laravel');
+            })
             ->first();
     }
 
@@ -148,7 +150,7 @@ class Module
      */
     public function getWebControllersNamespace()
     {
-        return $this->getNamespace().'\Http\Controllers';
+        return $this->getNamespace() . '\Http\Controllers';
     }
 
     /**
@@ -158,7 +160,7 @@ class Module
      */
     public function getApiControllersNamespace()
     {
-        return $this->getNamespace().'\Http\Controllers\Api';
+        return $this->getNamespace() . '\Http\Controllers\Api';
     }
 
     /**
@@ -168,7 +170,7 @@ class Module
      */
     public function getWebRouteName()
     {
-        return $this->getId().'::';
+        return $this->getId() . '::';
     }
 
     /**
@@ -178,7 +180,7 @@ class Module
      */
     public function getApiRouteName()
     {
-        return $this->getId().'::api.';
+        return $this->getId() . '::api.';
     }
 
     /**
@@ -186,7 +188,7 @@ class Module
      */
     public function getPath($path = '')
     {
-        return $this->getDirectory().'/'.$path;
+        return $this->getDirectory() . '/' . $path;
     }
 
     public static function mix($path, $module, $cdn = false)
