@@ -10,26 +10,26 @@ trait ModuleCommand
 {
     protected function getBasePath()
     {
-        $module = resolve(Manager::class)->get($this->argument('module'));
-        if (! $module) {
-            throw new \Exception('No such module "'.$this->argument('module').'" exists.');
+        $module = modulus($this->argument('module'));
+        if (!$module) {
+            throw new \Exception('No such module "' . $this->argument('module') . '" exists.');
         }
         $package = $module->getPackage();
 
-        return base_path('vendor').'/'.$package->name;
+        return base_path('vendor') . '/' . $package->name;
     }
 
     /**
      * Get the destination class path.
      *
-     * @param  string  $name
+     * @param string $name
      * @return string
      */
     protected function getPath($name)
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-        $path = $this->getBasePath().'/src'.str_replace('\\', '/', $name).'.php';
+        $path = $this->getBasePath() . '/src' . str_replace('\\', '/', $name) . '.php';
 
         return $path;
     }
@@ -39,7 +39,7 @@ trait ModuleCommand
      */
     public function getDescription(): string
     {
-        return 'Modulus: '.$this->description;
+        return 'Modulus: ' . $this->description;
     }
 
     /**
@@ -49,7 +49,7 @@ trait ModuleCommand
      */
     protected function rootNamespace()
     {
-        if ($module = resolve(Manager::class)->get($this->argument('module'))) {
+        if ($module = modulus($this->argument('module'))) {
             return $module->getNamespace();
         }
 
@@ -59,7 +59,7 @@ trait ModuleCommand
     /**
      * Parse the class name and format according to the root namespace.
      *
-     * @param  string  $name
+     * @param string $name
      * @return string
      */
     protected function qualifyClass($name)
@@ -75,7 +75,7 @@ trait ModuleCommand
         $name = str_replace('/', '\\', $name);
 
         return $this->qualifyClass(
-            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')) . '\\' . $name
         );
     }
 
