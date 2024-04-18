@@ -4,7 +4,7 @@ namespace Zymfonix\Modulus\Concerns;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
-use Zymfonix\Modulus\Manager;
+use Zymfonix\Modulus\Modulus;
 
 trait ModuleCommand
 {
