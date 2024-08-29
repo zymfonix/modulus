@@ -18,12 +18,12 @@
     "require": {
         "php": "^8.1",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0",
-        "illuminate/support": "^9.0|^10.0",
+        "illuminate/contracts": "^10|^11|^12",
+        "illuminate/support": "^9|^10|^11|^12",
         "laravel/helpers": "^1.5",
         "tormjens/eventy": "^0.9.4",
         "tormjens/extended-mix": "^1.0.9",
-        "laravel/legacy-factories": "^1.1"
+        "laravel/legacy-factories": "^v1.4.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
