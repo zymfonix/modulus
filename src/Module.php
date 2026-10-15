@@ -191,7 +191,7 @@ class Module
         return $this->getDirectory() . '/' . $path;
     }
 
-    public static function mix($path, $module, $cdn = false)
+    public static function mix($path, $module, $cdn = false, $vite = false)
     {
         if (App::runningInConsole() || App::runningUnitTests() || resolve(Mix::class)->inLocalMixRequest()) {
             return $path;
@@ -200,6 +200,6 @@ class Module
         $module = ModulusFacade::get($module);
         $package = $module->getPackage();
 
-        return resolve(Mix::class)->handle($path, $package->name);
+        return resolve(Mix::class)->handle($path, $package->name, false, $vite);
     }
 }
